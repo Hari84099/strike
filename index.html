@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STRIKE Course Registration</title>
+  <style>
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Inter', sans-serif; 
+    }
+    body { 
+      background: #1a1a1a; 
+      color: #fff; 
+      overflow-x: hidden; 
+    }
+
+    /* Navbar */
+    nav {
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      padding: 20px 5%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0; z-index: 1000;
+      box-shadow: 0 2px 5px rgba(255, 51, 102, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .logo { 
+      font-size: 1.8rem; 
+      font-weight: 800; 
+      color: #ff3366; 
+      text-transform: uppercase;
+     }
+    nav ul { 
+    list-style: none; 
+    display: flex; 
+    gap: 35px; 
+    flex-wrap: wrap; 
+    margin: 0 auto; 
+    justify-content: center;
+   }
+    nav ul li a {
+      text-decoration: none; 
+      color: #fff; 
+      font-weight: 500; 
+      padding: 8px 15px;
+      transition: color 0.3s ease, transform 0.3s ease; 
+      border-radius: 20px; 
+    }
+    nav ul li a:hover {
+      color: #ff3366; 
+      transform: scale(1.1); 
+      background: rgba(255, 51, 102, 0.2); 
+      box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+    }
+
+    .nav-btn {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      padding: 12px 25px;
+      border: 2px solid #ff3366;
+      border-radius: 30px;
+      background: transparent;
+      color: #ff3366;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 3000;
+      text-decoration: none;
+      transition: 
+      background 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .nav-btn:hover {
+      background: #ff3366;
+      color: #fff;
+      transform: translateZ(20px) scale(1.15);
+      box-shadow: 0 0 25px rgba(255, 51, 102, 0.8);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 80px 5%; 
+      background: linear-gradient(135deg, #1a1a1a 50%, #ff3366 100%);
+      position: relative; 
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; 
+      position: absolute; 
+      top: -50%; left: -50%; 
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255, 51, 102, 0.3), transparent);
+      animation: pulse 10s infinite ease-in-out;
+    }
+    .hero-text { 
+      flex: 1; 
+      min-width: 280px; 
+      z-index: 1; 
+    }
+    .hero-text h1 {
+      font-size: 3rem; 
+      color: #fff; 
+      margin-bottom: 20px; 
+      line-height: 1.2;
+      animation: slideInLeft 1s ease-out;
+    }
+    .hero-text p { 
+      font-size: 1.2rem; 
+      margin-bottom: 30px; 
+      color: #ddd; 
+      line-height: 1.6; 
+    }    
+   .hero-cta {
+     padding: 14px 35px;
+     border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #ff3366, #ff6699);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      animation: floatPulse 2s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+   }
+   .hero-cta:hover {
+      transform: translateY(-12px) scale(1.1);
+      box-shadow: 0 12px 30px rgba(255,51,102,0.7);
+      background: linear-gradient(135deg, #ff6699, #ff3366); 
+   }
+    .hero-img { 
+      flex: 1; 
+      min-width: 280px; 
+      text-align: center; 
+   }
+    .hero-img img {
+      width: 80%; 
+      max-width: 350px; 
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Themes Section */
+   .themes {
+    padding: 60px 5%;
+    text-align: center;
+    background: #222;
+   }
+   .themes h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #ff3366;
+   }
+    .theme-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      padding: 0 10px;
+    }
+
+   /* Theme card design */
+    .theme-card {
+      background: #333;
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid #ff3366;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .theme-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+    }
+    .theme-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #ff3366;
+    }
+    .theme-card p {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .theme-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .theme-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* Requirements Section */
+    .requirements {
+      padding: 60px 5%; 
+      text-align: center;
+    }
+    .requirements h2 { 
+      font-size: 2.5rem; 
+      margin-bottom: 30px; 
+      color: #ff3366; 
+    }
+    .req-list {
+      max-width: 800px; margin: 0 auto; text-align: left; color: #ddd;
+      line-height: 1.8; font-size: 1.1rem;
+    }
+    .req-list li { 
+      margin-bottom: 10px; 
+      position: relative; 
+      padding-left: 25px; 
+    }
+    .req-list li::before {
+      content: '★'; 
+      position: absolute; 
+      left: 0; 
+      color: #ff3366; 
+      font-size: 1.2rem;
+    }
+
+    /* Form Container */
+    #form-toggle { 
+      display: none; 
+    }
+    .form-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    #form-toggle:checked ~ .form-container { display: flex; }
+    #form-toggle:checked ~ nav,
+    #form-toggle:checked ~ .hero,
+    #form-toggle:checked ~ .themes,
+    #form-toggle:checked ~ .requirements,
+    #form-toggle:checked ~ footer {
+      filter: blur(5px);
+      pointer-events: none;
+    }
+    .form-content {
+      background: #333;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      border: 1px solid #ff3366;
+      box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+    }
+    .form-content h2 {
+      font-size: 1.8rem;
+      color: #ff3366;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ff3366;
+      border-radius: 5px;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .submit-button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: #ff3366;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .submit-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 51, 102, 0.5);
+    }
+    .close-button {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ff3366;
+      border-radius: 25px;
+      background: transparent;
+      color: #ff3366;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .close-button:hover {
+      background: #ff3366;
+      color: #fff;
+    }
+
+    /* About Us Section */
+    .about {
+      padding: 60px 5%;
+      background: #111;
+      text-align: center;
+    }
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #ff3366;
+    }
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+    .about-text {
+      flex: 1;
+      min-width: 280px;
+      text-align: left;
+      color: #ddd;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    .about-text .highlight {
+      color: #ff3366;
+      font-weight: 600;
+    }
+    .about-img {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+    }
+    .about-img img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(255, 51, 102, 0.3);
+    }
+
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 40px 5%;
+      border-top: 2px solid #ff3366;
+    }
+    footer h2 { 
+    font-size: 1.8rem; 
+    margin-bottom: 20px; 
+    }
+    footer .footer-cta {
+      padding: 12px 30px;
+      border: 2px solid #ff3366;
+      border-radius: 25px;
+      background: transparent;
+      color: #ff3366;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    footer .footer-cta:hover { background: #ff3366; color: #fff; }
+
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.2; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    /* @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    } */
+
+    @keyframes floatPulse {
+   0% { transform: translateY(0) scale(1); box-shadow: 0 5px 15px rgba(255,51,102,0.4); }
+   50% { transform: translateY(-8px) scale(1.05); box-shadow: 0 10px 25px rgba(255,51,102,0.6); }
+   100% { transform: translateY(0) scale(1); box-shadow: 0 5px 15px rgba(255,51,102,0.4); }
+    }
+
+    @keyframes floatButton {
+   0% { transform: translateY(0); }
+   50% { transform: translateY(-8px); }
+   100% { transform: translateY(0); }
+   }
+
+    @keyframes softFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 2rem; }
+      .hero-text p { font-size: 1rem; }
+      .hero-img img { width: 100%; max-width: 300px; }
+      .themes h2, .requirements h2 { font-size: 1.8rem; }
+      .theme-card { padding: 20px; }
+      nav ul { gap: 10px; }
+      .nav-btn { padding: 8px 15px; }
+      .form-content { padding: 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding: 40px 5%; }
+      .hero-text h1 { font-size: 1.8rem; }
+      .hero-cta { padding: 10px 20px; }
+      .themes, .requirements { padding: 40px 5%; }
+      .theme-card h3 { font-size: 1.2rem; }
+      .req-list { font-size: 1rem; }
+      nav { flex-wrap: wrap; padding: 15px 5%; }
+      .logo { font-size: 1.5rem; }
+      .form-content h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Checkbox for Form Toggle -->
+  <input type="checkbox" id="form-toggle">
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">STRIKE</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#themes">Themes</a></li>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#about">About Us</a></li>
+    </ul>
+    <label for="form-toggle" class="nav-btn">Join Course</label>
+  </nav>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <div class="form-content">
+      <h2>STRIKE Course Registration</h2>
+      <form action="/submit" method="post">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" required></textarea>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+        <label for="form-toggle" class="close-button">Close</label>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Unleash Your Creativity with STRIKE Course</h1>
+      <p>Join our course to master DSA. Learn to create stunning, concepts in real-world problems.</p>
+      <label for="form-toggle" class="hero-cta">Get Started</label>
+    </div>
+    <div class="hero-img">
+      <img src="./assets/logo1.jpg" alt="Course illustration">
+    </div>
+  </section>
+
+  <!-- Themes Section -->
+<section class="themes" id="themes">
+  <h2>DSA Course Themes</h2>
+  <div class="theme-cards">
+    <div class="theme-card">
+      <h3>Mastering Core Data Structures</h3>
+      <p>Understand the fundamentals of arrays, linked lists, stacks, queues, hash maps, trees, and graphs — the backbone of every efficient algorithm.</p>
+    </div>
+    <div class="theme-card">
+      <h3>Algorithmic Problem Solving</h3>
+      <p>Learn to approach problems logically using recursion, sorting, searching, dynamic programming, divide and conquer, and greedy algorithms.</p>
+    </div>
+    <div class="theme-card">
+      <h3>Competitive Programming</h3>
+      <p>Sharpen your coding speed and accuracy through contests and challenges inspired by real coding competitions.</p>
+    </div>
+    <div class="theme-card">
+      <h3>Interview Preparation</h3>
+      <p>Get ready for technical interviews with curated DSA problems from top tech companies like Google, Amazon, and Microsoft.</p>
+    </div>
+    <div class="theme-card">
+      <h3>Language Implementation</h3>
+      <p>Implement DSA concepts in your preferred programming language — C++, Java, or Python — to gain practical, hands-on experience.</p>
+    </div>
+    <div class="theme-card">
+      <h3>Optimization Techniques</h3>
+      <p>Analyze time and space complexities to write code that’s not only correct but also efficient and scalable.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Requirements Section -->
+  <section class="requirements" id="requirements">
+    <h2>Course Requirements</h2>
+    <ul class="req-list">
+      <li>Understand core data structures (arrays, linked lists, stacks, queues, hash maps, trees, graphs).</li>
+      <li>Learn algorithmic techniques (recursion, dynamic programming, greedy methods).</li>
+      <li>Build strong problem-solving skills with real coding challenges.</li>
+      <li>Implement efficient solutions in Java, C++, or Python.</li>
+      <li>Analyze time & space complexity to write optimized code.</li>
+      <li>Practice with mock interview questions from top tech companies.</li>
+      <li>Participate in weekly DSA contests & peer discussions to sharpen skills.</li>
+      <li>Work on mini-projects & case studies applying DSA concepts in real-world problems.</li>
+    </ul>
+  </section>
+
+    <!-- About Us Section -->
+  <section class="about" id="about">
+    <h2>About Us</h2>
+    <div class="about-container">
+      <div class="about-text">
+        <p>
+          At <span class="highlight">STRIKE</span>, we believe that mastering 
+          <strong>Data Structures & Algorithms</strong> is the key to unlocking success in tech.  
+          Our mission is to empower learners with the problem-solving mindset 
+          and coding confidence required to crack top-level interviews and build 
+          efficient, real-world applications.
+        </p>
+        <p>
+          With a focus on <span class="highlight">hands-on practice</span>, peer learning, 
+          and weekly contests, we ensure that every student not only understands 
+          the theory but also applies it effectively. 
+        </p>
+        <p>
+          Join us today and become part of a passionate community of coders who 
+          aim to turn ideas into impactful solutions.
+        </p>
+      </div>
+      <div class="about-img">
+        <img src="./assets/about.png" alt="About STRIKE">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <h2>Join the STRIKE Course Today!</h2>
+    <label for="form-toggle" class="footer-cta">Register Now</label>
+  </footer>
+</body>
+</html>
