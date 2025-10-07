@@ -439,7 +439,7 @@
 
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    /*@media (max-width: 768px) {
       .hero-text h1 { font-size: 2rem; }
       .hero-text p { font-size: 1rem; }
       .hero-img img { width: 100%; max-width: 300px; }
@@ -459,7 +459,122 @@
       nav { flex-wrap: wrap; padding: 15px 5%; }
       .logo { font-size: 1.5rem; }
       .form-content h2 { font-size: 1.5rem; }
-    }
+    }*/
+    /* Mobile & Tablet Responsive Enhancements */
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    padding: 60px 5%;
+  }
+  .hero-text, .hero-img {
+    text-align: center;
+  }
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+  .hero-text p {
+    font-size: 1.1rem;
+  }
+  .theme-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  nav ul {
+    gap: 15px;
+  }
+  .nav-btn {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-text p {
+    font-size: 1rem;
+  }
+  .hero-img img {
+    max-width: 250px;
+  }
+  .themes h2, .requirements h2 {
+    font-size: 1.8rem;
+  }
+  .theme-card {
+    padding: 15px;
+  }
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-btn {
+    top: 15px;
+    right: 20px;
+    padding: 8px 15px;
+  }
+  .form-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 5%;
+  }
+  .hero-text h1 {
+    font-size: 1.6rem;
+  }
+  .hero-text p {
+    font-size: 0.95rem;
+  }
+  .hero-cta {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+  .theme-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .theme-card h3 {
+    font-size: 1.1rem;
+  }
+  .theme-card p {
+    font-size: 0.9rem;
+  }
+  .req-list {
+    font-size: 0.95rem;
+  }
+  .about-text, .about-img {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+  .about-text {
+    padding-bottom: 20px;
+  }
+  nav {
+    flex-direction: column;
+    padding: 10px 5%;
+  }
+  .logo {
+    font-size: 1.4rem;
+  }
+  .form-content {
+    width: 95%;
+    padding: 15px;
+  }
+  .form-content h2 {
+    font-size: 1.4rem;
+  }
+  footer h2 {
+    font-size: 1.5rem;
+  }
+  .footer-cta {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
   </style>
 </head>
 <body>
